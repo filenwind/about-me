@@ -3,7 +3,20 @@ function isMobile() {
       catch(e){ return false; }
 }
 
+
+
 (function(){
+
+    var page = $(window);
+    $(window).mousewheel(function(event, delta, deltaX, deltaY){
+        
+        
+        if (delta < 0) page.scrollTop(page.scrollTop() + 80);
+        else if (delta > 0) page.scrollTop(page.scrollTop() - 80);
+        
+        return false;
+    });
+
     
     var datas = [{
         id:"parallax-introduce",
@@ -97,7 +110,7 @@ function isMobile() {
             
             var $introTitle = $(".intro-title");
             
-            var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "50%"}});
+            var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "40%"}});
 
                         // build scenes
                         new ScrollMagic.Scene({triggerElement: $(".parallax-section-gap").get(0)})
@@ -106,15 +119,25 @@ function isMobile() {
                                         
         
             
-                $(".parallax-section").each(function(){
+                $(".parallax-section").each(function(i){
                     
                     var $this = $(this);
+                    var $img = $this.find("img");
+                    
                     if(!isMobile()){
-                        $this.parallax("50%", 0.1);
-                    }else{
-                        $(this).height($(window).height());
-                    }
+                        var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
+
+                        // build scenes
+                        TweenMax.set($img.get(0), {y: "-50%"});
+                        new ScrollMagic.Scene({triggerElement: $this.get(0)})
+                                        .setTween($img.get(0), {y: "50%", ease: Power0.easeNone})
+                                        .addTo(controller);
                         
+                    }else{
+                        $img.height($(window).height());
+                    }
+                    
+                    
                     
                 });
                     
@@ -180,8 +203,9 @@ function isMobile() {
                         return (
                             React.createElement("div", {id: item.id, className: "parallax-section-wrapper"}, 
                                 gap, 
-                                React.createElement("div", {className: "parallax-section", style: {backgroundImage: "url("+item.img_url+")"}}, 
-                                    introTitle
+                                React.createElement("div", {className: "parallax-section"}, 
+                                    introTitle, 
+                                    React.createElement("img", {src: item.img_url})
                                 )
                             )
                         )

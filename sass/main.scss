@@ -63,14 +63,10 @@ header{
     
     .parallax-section{
         
-        height: 100vh;
         width: 100vw;
         max-width: 100%;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50%;
         position: relative;
+        overflow: hidden;
         
         .intro-title{
             position: absolute;
@@ -78,6 +74,11 @@ header{
             width: 100%;
             text-align: center;
             color: #FFF;
+            z-index: index($z-index-manage, base);
+        }
+        
+        img{
+            min-height: 100vh;
         }
         
     }
