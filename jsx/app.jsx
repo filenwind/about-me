@@ -122,6 +122,8 @@ function isMobile() {
             
             
             var controller = new ScrollMagic.Controller();
+            var leaveController = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onLeave"}});
+            
             $(".parallax-section-gap").each(function(){
                 
                 var $colRight = $(this).find(".col-right");
@@ -135,6 +137,17 @@ function isMobile() {
                 var scene = new ScrollMagic.Scene({triggerElement: this})
                                         .setTween(tween)
                                         .addTo(controller);
+                
+                
+                
+                var tween = new TimelineMax().to($colRight, 1, {
+                    left: "+=300",
+                    opacity: 0
+                });
+                                        
+                var scene = new ScrollMagic.Scene({triggerElement: this})
+                    .setTween(tween)
+                    .addTo(leaveController);
             });
             
             
