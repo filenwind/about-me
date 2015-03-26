@@ -1,6 +1,11 @@
 $header-height: 60px;
 $z-index-manage: base, back-drop, spotlight, header;
 
+
+$device-mobile: 768px;
+$device-tab: 992px;
+$device-pc: 1200px;
+
 html{
     min-height: 100%;
     background-color: #f1f1f1;
@@ -64,6 +69,7 @@ header{
     .parallax-section{
         
         width: 100vw;
+        height: 100vh;
         max-width: 100%;
         position: relative;
         overflow: hidden;
@@ -78,7 +84,19 @@ header{
         }
         
         img{
-            min-height: 100vh;
+            
+            
+            position: absolute;
+            height: 100%;
+            max-width: none;
+            left: -100%;
+            right: -100%;
+            margin: auto;
+            
+            @media screen and (min-width: $device-pc){
+                width: 100vw;
+            }
+            
         }
         
     }
@@ -96,13 +114,16 @@ header{
         .img-wraper{
             text-align: center;
             height: 100%;
+            opacity: 0;
+            
+            img{
+                height: 100px;
+                width: 100px;
+                vertical-align: middle;
+            }
         }
         
-        img{
-            height: 100px;
-            width: 100px;
-            vertical-align: middle;
-        }
+        
         
     }
 }

@@ -148,10 +148,10 @@ function isMobile() {
             
             $(".parallax-section-gap").each(function(){
                 
-                var $colRight = $(this).find(".col-right");
+                var colRight = $(this).find(".col-right").get(0);
                 
-                TweenMax.set($colRight, {left: "+=300", opacity:0});
-                var tween = new TimelineMax().to($colRight, 1, {
+                TweenMax.set(colRight, {left: "+=300"});
+                var tween = new TimelineMax().to(colRight, 1, {
                     left: 0,
                     opacity: 1
                 });
