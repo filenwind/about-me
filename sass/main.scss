@@ -91,14 +91,19 @@ header{
             
             
             position: absolute;
-            height: 100%;
+            min-width: 100vw;
+            height: 100vh;
             max-width: none;
             left: -100%;
             right: -100%;
+            top: -100%;
+            bottom: -100%;
             margin: auto;
             
-            @media screen and (min-width: $device-pc){
+            
+            @media screen and (min-width: $device-pc) , screen and (min-width: $device-tab){
                 width: 100vw;
+                height: auto;
             }
             
         }

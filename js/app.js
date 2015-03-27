@@ -120,11 +120,12 @@ function isMobile() {
             
             //animate title words
             
+            var initial_delay = 500;
             $introTitle.find(".writer").each(function (i) {
                 var $this = $(this);
                 setTimeout(function(){
                     $this.fadeIn();
-                }, (i+1) * 300)
+                }, (i+1) * 300 + initial_delay)
             });
             
         
@@ -256,11 +257,6 @@ function isMobile() {
         img_url: "http://facebook.github.io/react/img/logo.svg",
         description: "A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES",
         url:"http://facebook.github.io/react/",
-    }, {
-        title: "parallax scroll",
-        img_url: "http://i.imgur.com/K74GwQl.png",
-        description: "Static Background. This section has a background that moves slightly slower than the user scrolls. This is achieved by changing the top position of the background for every pixel the page is scrolled.",
-        url:"http://ianlunn.co.uk/plugins/jquery-parallax/",
     }, {
         title: "bootstrap",
         img_url: "http://i.imgur.com/Myr4HGA.png",
