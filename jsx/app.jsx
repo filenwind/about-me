@@ -112,35 +112,44 @@ function isMobile() {
             
             var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "40%"}});
 
-                        // build scenes
-                        new ScrollMagic.Scene({triggerElement: $(".parallax-section-gap").get(0)})
-                                        .setTween($introTitle.get(0), {y: "80%", ease: Linear.easeNone, opacity: 0})
-                                        .addTo(controller);
-                                        
+            // build scenes
+            new ScrollMagic.Scene({triggerElement: $(".parallax-section-gap").get(0)})
+                            .setTween($introTitle.get(0), {y: "80%", ease: Linear.easeNone, opacity: 0})
+                            .addTo(controller);
         
             
-                $(".parallax-section").each(function(i){
-                    
-                    var $this = $(this);
-                    var $img = $this.find("img");
-                    
-                    if(!isMobile()){
-                        var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
+            //animate title words
+            
+            $introTitle.find(".writer").each(function (i) {
+                var $this = $(this);
+                setTimeout(function(){
+                    $this.fadeIn();
+                }, (i+1) * 300)
+            });
+            
+        
+            $(".parallax-section").each(function(i){
+                
+                var $this = $(this);
+                var $img = $this.find("img");
+                
+                if(!isMobile()){
+                    var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
 
-                        // build scenes
-                        TweenMax.set($img.get(0), {y: "-50%"});
-                        new ScrollMagic.Scene({triggerElement: $this.get(0)})
-                                        .setTween($img.get(0), {y: "50%", ease: Power0.easeNone})
-                                        .addTo(controller);
-                        
-                    }else{
-                        $img.height($(window).height());
-                    }
+                    // build scenes
+                    TweenMax.set($img.get(0), {y: "-50%"});
+                    new ScrollMagic.Scene({triggerElement: $this.get(0)})
+                                    .setTween($img.get(0), {y: "50%", ease: Power0.easeNone})
+                                    .addTo(controller);
                     
-                    
-                    
-                });
-                    
+                }else{
+                    $img.height($(window).height());
+                }
+                
+                
+                
+            });
+                
                 
             
             
@@ -192,9 +201,20 @@ function isMobile() {
                         
                         var introTitle = "";
                         if(!i){
+                            
+                            var strs = item.title.split("");
+                            
                             introTitle = 
                                 <div className="intro-title">
-                                    <h1>{item.title}</h1>
+                                    <h1>
+                                        {
+                                            strs.map(function(word){
+                                                return (<span className="writer">{word}</span>);
+                                            })
+                                        }
+                                        <span className="flicker-cursor">_</span>
+                                        
+                                    </h1>
                                 </div>
                             ;
                         }

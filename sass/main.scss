@@ -81,6 +81,10 @@ header{
             text-align: center;
             color: #FFF;
             z-index: index($z-index-manage, base);
+            
+            .writer{
+                display: none;
+            }
         }
         
         img{
@@ -222,4 +226,25 @@ footer{
         display: block;
         opacity: 0.8
     }
+}
+
+
+.flicker-cursor{
+    -webkit-animation: flicker 0.5s infinite alternate;
+       -moz-animation: flicker 0.5s infinite alternate;
+        -ms-animation: flicker 0.5s infinite alternate;
+         -o-animation: flicker 0.5s infinite alternate;
+            animation: flicker 0.5s infinite alternate;
+}
+
+@-moz-keyframes flicker{
+    
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes flicker{
+    
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
 }
